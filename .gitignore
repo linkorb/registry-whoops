@@ -1,0 +1,10 @@
+.DS_Store
+*.sublime-*
+*.iml
+.idea/
+/.buildpath
+/.project
+/.settings
+/autotune.json
+/composer.lock
+/vendor

@@ -1,0 +1,26 @@
+{
+    "name": "linkorb/registry-whoops",
+    "license": "MIT",
+    "description": "Whoops Formatter and Handler: store exceptions in Registry.",
+    "authors": [
+        {
+            "name": "LinkORB",
+            "email": "engineering@linkorb.com",
+            "role": "Development"
+        }
+    ],
+    "require": {
+        "filp/whoops": "^2.0",
+        "linkorb/registry-client-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Registry\\Whoops\\": "src/Whoops/"
+        }
+    },
+    "require-dev": {
+        "linkorb/autotune": "^1.0",
+        "phpunit/phpunit": "^4.8",
+        "psr/http-message": "^1.0"
+    }
+}
