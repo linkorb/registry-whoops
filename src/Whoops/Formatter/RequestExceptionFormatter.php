@@ -24,31 +24,31 @@ class RequestExceptionFormatter
             ),
         );
 
-        if (! empty($_GET)) {
+        if (!empty($_GET)) {
             $properties['request']['get'] = $_GET;
         }
 
-        if (! empty($_POST)) {
+        if (!empty($_POST)) {
             $properties['request']['post'] = $_POST;
         }
 
-        if (! empty($_FILES)) {
+        if (!empty($_FILES)) {
             $properties['request']['files'] = $_FILES;
         }
 
-        if (! empty($_COOKIE)) {
+        if (!empty($_COOKIE)) {
             $properties['request']['cookie'] = $_COOKIE;
         }
 
-        if (! empty($_SESSION)) {
+        if (!empty($_SESSION)) {
             $properties['request']['session'] = $_SESSION;
         }
 
-        if (! empty($_SERVER)) {
+        if (!empty($_SERVER)) {
             $properties['request']['server'] = $_SERVER;
         }
 
-        if (! empty($_ENV)) {
+        if (!empty($_ENV)) {
             $properties['request']['env'] = $_ENV;
         }
 

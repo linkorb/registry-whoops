@@ -53,7 +53,7 @@ class RegistryHandler extends Handler
 
         $result = json_decode((string) $response->getBody(), true);
 
-        if (! $result || ! $result['success']) {
+        if (!$result || !$result['success']) {
             # NoOp
         }
 
