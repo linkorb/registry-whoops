@@ -17,12 +17,13 @@ class RequestExceptionFormatter
      */
     public function getExceptionProperties(Inspector $inspector, $withStackTrace = true)
     {
-        $properties = array(
-            'exception' => Formatter::formatExceptionAsDataArray(
-                $inspector,
-                $withStackTrace
-            ),
-        );
+        $exception = Formatter::formatExceptionAsDataArray($inspector, $withStackTrace);
+
+        if ($withStackTrace) {
+            $exception['trace'] = $this->formatTrace($exception['trace']);
+        }
+
+        $properties = ['exception' => $exception];
 
         if (!empty($_GET)) {
             $properties['request']['get'] = $_GET;
@@ -40,7 +41,7 @@ class RequestExceptionFormatter
             $properties['request']['cookie'] = $_COOKIE;
         }
 
-        if (!empty($_SESSION)) {
+        if (isset($_SESSION) && !empty($_SESSION)) {
             $properties['request']['session'] = $_SESSION;
         }
 
@@ -53,5 +54,43 @@ class RequestExceptionFormatter
         }
 
         return $properties;
+    }
+
+    /*
+     * Further format the stack trace.
+     */
+    private function formatTrace($originalFrames)
+    {
+        $frames = [];
+        foreach ($originalFrames as $originalFrame) {
+            $formattedFrame = [
+                'file' => $originalFrame['file'],
+                'line' => $originalFrame['line'],
+                'function' => $originalFrame['function'],
+                'class' => $originalFrame['class'],
+            ];
+            $formattedArgs = [];
+            foreach ($originalFrame['args'] as $originalArg) {
+                $formattedArgs[] = $this->formatArg($originalArg);
+            }
+            $formattedFrame['args'] = $formattedArgs;
+            $frames[] = $formattedFrame;
+        }
+        return $frames;
+    }
+
+    /*
+     * Convert non-string args to some kind of string representation.
+     */
+    private function formatArg($originalArg)
+    {
+        if (is_array($originalArg)) {
+            return 'Array(...)';
+        } elseif (is_bool($originalArg)) {
+            return sprintf('bool(%s)', $originalArg ? 'true' : 'false');
+        } elseif (is_object($originalArg)) {
+            return get_class($originalArg);
+        }
+        return $originalArg;
     }
 }
