@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "filp/whoops": "^2.0",
+        "filp/whoops": "~2.0",
         "linkorb/registry-client-php": "^1.0"
     },
     "autoload": {
