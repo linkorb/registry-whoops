@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "filp/whoops": "~2.1",
         "linkorb/registry-client-php": "^1.0"
     },
     "autoload": {
@@ -21,6 +20,7 @@
     "require-dev": {
         "linkorb/autotune": "^1.0",
         "phpunit/phpunit": "^4.8",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "filp/whoops": "^2.0"
     }
 }
